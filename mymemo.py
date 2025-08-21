@@ -1,17 +1,23 @@
-#一行ずつそれぞれの役割や性質を理解しながら進める
-# (わからない箇所がないように)
+"""
+一行ずつそれぞれの役割や性質を理解しながら進める
+ (わからない箇所がないように)
+"""
 
-#記号の理解(随時追加)
-#.はオブジェクトの属性(固定された名前)にアクセスするための記号 
-#[]角括弧はキーやインデックスでデータを探すための記号 
-#()関数やクラス、メソッドを呼び出すためのもの  
+"""
+記号の理解(随時追加)
+.はオブジェクトの属性(固定された名前)にアクセスするための記号 
+[]角括弧はキーやインデックスでデータを探すための記号 
+()関数やクラス、メソッドを呼び出すためのもの  
+"""
 
 #関数と()はセット
 print("こんにちは！") #printは()の中身を出力する関数
 
-#変数
+"""
+変数(値を入れる箱)
 apple_price = 100 #変数名は分かりやすく(小文字と単語は_で繋げる)
 print(apple_price)
+"""
 
 #代入
 x = 10
@@ -37,7 +43,19 @@ w_type = type(weight)
 
 print(a_type, n_type, w_type)
 
-#数値演算
+"""
+数値演算
+
+演算子
+足し算 +
+引き算 -
+かけ算 *
+割り算 /
+べき乗 ** べき根 √→**(1/2)
+割り算の余り %
+切り捨て割り算 // ※計算の優先順位は数学と同じ
+"""
+
 math = 82
 japanese = 74 
 english = 60
@@ -50,20 +68,48 @@ given_name = "太郎"
 full_name = surname + given_name #文字列を足すと並ぶ
 print(full_name)
 
+"""
+文字列フォーマット
+
+f"{変数}"
+"""
 #f-string(変数埋め込み)
 price = 100
 text = f"この商品は{price}円です"
 print(text)
 
-#リスト(一つの変数に複数の値を持つ型※リスト型)※インデックスを持つ
+#ゼロ埋め
+x = 123
+print(f"{x:010}")#xを0で埋めて10桁表示
+
+#金額用カンマ
+x = 9000000
+print(f"{x:,}")#
+
+#小数点以下桁数
+x = 0.123
+print(f"{x:.5f}")
+
+
+"""
+リスト(一つの変数に複数の値を持つ型※リスト型)※インデックスを持つ
+"""
+
 student_name = ["斉藤", "小林","佐々木", "田中"]
 student_name.append("佐藤") #追加
 student_name.remove("佐々木")#削除
 print(student_name)
-a = student_name[0:3]#インデックス(順序)の指定
-b = len(student_name)
+
+student_name_2 = ["斉藤", "小林","佐々木", "田中"]
+a = student_name_2[0:3]#インデックス(順序)の指定 ※ ,の数
+b = len(student_name_2)#リストの要素の数(長さ)
 
 print(f"０から３までの生徒は{a}",f"全生徒の数は{b}人")
+
+x = ["a", "b", 100]
+y = ["a", "f"]
+z = x + y #リスト同士の結合
+print(z)
 
 #ex.3教科の平均を出すプログラム
 math = 82
@@ -77,18 +123,29 @@ scores = [82, 74, 60]
 avg_score = sum(scores) / len(scores)
 print(avg_score)
 
-#辞書(keyとvalue(一つのペア)として複数持つ型※辞書型)※インデックス持たない
+"""
+辞書(keyとvalue(一つのペア)として複数持つ型※辞書型)※インデックス持たない
+"""
+
 prices = {"バナナ": 250, "みかん": 300, "いちご": 500}
-x = prices["みかん"]#key(名前)を使ってvalue(中身)を取り出せる
+x = prices["みかん"]#辞書名[key]でvalueを取り出せる
 prices["ぶどう"] = 400 #新しいkeyとvalueを追加
 prices["バナナ"] = 200 #既にあるkeyのvalue値を変更
 print(prices)
 
+# ※同じkeyは反映されない(後に追加のもの)
 prices = {"バナナ":250, "みかん":300, "バナナ":500} 
-print(prices) #同じkey反映されない(後に追加のもの)
+print(prices) 
 
+#辞書の結合
+price_1 = {"バナナ":250, "みかん":300, "いちご":450} 
+price_2 = {"トマト":280, "梨":150} 
+price_1.update(price_2)#updateメソッドで辞書同士の結合
+price_1_len = len(price_1)#lenでリスト同様、要素の数を取り出せる
+print(f"結合された辞書は{price_1}、要素数は{price_1_len}")
+
+#辞書のリスト化
 prices = {"バナナ":250, "みかん":300, "いちご":500}
-
 fruit = list(prices.keys())#.keys()と.value()→その要素だけを抽出
 print(fruit) #※dict_values型の為、list()でリスト化する必要あり
 
@@ -107,8 +164,10 @@ scores = {"数学": 82, "国語": 74, "英語": 60, "理科": 92, "社会": 70}
 avg_score = sum(scores.values()) / len(scores.values()) 
 print(f"{avg_score}点")#sum,len関数はdict_value型をそのまま入れることが可
 
-#集合とタプル(型)
-#集合(インデックスを持たない,同じ値を持てない)
+"""
+集合(インデックスを持たない,同じ値を持てない)
+"""
+
 x = {1, 2, 4} 
 x.add(7) #追加
 x.discard(1) #削除　.discard()または.remove()※removeは対象がなければエラー
@@ -121,19 +180,41 @@ b = x - y #差集合
 c = x & y #積集合
 print(a, b, c)
 
-#タプル(インデックスを持つ、同じ値を持てる※値を変更できない)
+"""
+タプル(インデックスを持つ、同じ値を持てる※値を変更できない)
+"""
+
 x = (1, 1, 4, "A", "B", "C") #ex.緯度経度
 y = x[0:5] #リストのインデックスと同じように抽出できる
 print(y)
 
-#インデント→コードのブロックを表すのにコードの書き始める位置を後ろに下げる
-#(1インデント→半角スペース4つ)
-#ブロックが始まりを示す:(コロン)が必要 ex.if文、for文、関数定義、クラス定義
+"""
+制御構文(if,for文)
+インデント→コードのブロックを表すのにコードの書き始める位置を後ろに下げる
+(1インデント→半角スペース4つ)
+ブロックが始まりを示す:(コロン)が必要 ex.if文、for文、関数定義、クラス定義
+"""
 
-#条件分岐(if文)※インデントを使う
+"""
+条件分岐(if文)※インデントを使用
 
-x=True #TrueかFalseha頭文字は大文字
-y=False #Bool型の値(どちらも変数に代入可)
+if 条件文: 
+    条件分がTrueの時の処理
+else:
+    条件文がFalseの時の処理
+   
+True:
+条件が満たされている ※頭文字は大文字
+False:
+条件が満たされていない 
+
+TrueやFalse→Bool型(論理型)の値(どちらも変数に代入可) 
+"""
+
+#等価、不等価の条件式（==、!=）
+x = "Apple"
+result = x == "Apple" 
+print(result)
 
 prefecture = "ワシントン"
 
@@ -147,17 +228,7 @@ if number % 2 == 0:
     print("偶数です")
 else:
     print("奇数です")
-
-age = 20
-if age >= 20:
-    print("成人です")
-elif age >= 18:
-    print("成人ですが飲酒できません")
-elif age >= 6:
-    print("こどもです")
-else:
-    print("乳児・幼児です")
-
+    
 #ex.閏年の判定
 year = 2024
 
@@ -170,19 +241,58 @@ elif year % 4 ==0:
 else:
     print("平年です")
 
-#繰り返し処理(for~in文)※コレクションから要素を取り出し繰り返す
+#大小比較の条件式(>= 、>、<、<=)
+age = 20
+if age >= 20:
+    print("成人です")
+elif age >= 18: #elifはいくつも書ける
+    print("成人ですが飲酒できません")
+elif age >= 6:
+    print("こどもです")
+else:
+    print("乳児・幼児です")
+    
+#包括の条件式(in)
+x = "apple"
+result = x in ["apple","banana"]
+print(result)
 
-scores = [90, 30, 40] #[リスト](タプル){集合}の場合
+#複数の条件を組み合わせる(and:かつ、or:または)
+age = 20
+gender = "女性"
+result = (age >= 20) and (gender == "女性")
+print(result)
+
+#否定(not:ではない)
+age = 19
+result = not(age >= 20)
+print(result)
+
+
+"""
+繰り返し処理(for~in文)※コレクションから要素を取り出し繰り返す
+for 変数 in 繰り返しオブジェクト(リスト・辞書・range等):
+    処理
+"""
+
+#[リスト](タプル){集合}の場合
+x_list = [100, 190 , 2980]
+for x in x_list:
+    x_yen = str(x) + "円"
+    print(x_yen)
+    
+scores = [90, 30, 40] 
 for x in scores:#要素を取り出す
     print(x + 1)
 
-fruit = {"apple": 130, "banana": 350, "lemon": 100} #辞書の場合
+#辞書の場合
+fruit = {"apple": 130, "banana": 350, "lemon": 100} 
 for name,price in fruit.items(): #.items()はキーと値のペアを取り出す関数
     print(f"{name}は{price}円です") 
 
-#forとrange関数(連続した整数のみ繰り返し)
-for x in range(5):
-    print(x) #※最後の数字は含まれない
+#range関数(回数が決まっていてfor文回したい時)
+for x in range(5): #range関数は連番の整数を作れる※最後の数字は含まれない
+    print(x) 
 
 for i in range(1,11): #:ではなく,に注意
     print(i)
@@ -222,8 +332,21 @@ for number in range(1,101):
     else:
         print(number)
 
-#関数定義と関数呼び出し
-def add_sub_numbers (a, b): #def 関数名(引数): 改行してまとめたい処理
+"""
+関数(処理を一つにまとめて定義する)
+
+関数定義
+def 関数名(引数1,引数2,…): 
+    処理…
+    処理…
+    return 戻り値  
+
+引数:関数に渡された値 戻り値:関数が返す値
+"""
+
+#関数呼び出し
+def add_sub_numbers (a, b): 
+    #関数の処理の部分
     c = a + b
     d = a - b
     return c, d #return(戻り値)が結果になる※外でその値を使う時に必要(処理だけしたい時はいらない)
@@ -246,17 +369,28 @@ year = 2024
 result = is_leep_year(year) #returnが設定した変数に代入される
 print(result)
 
-#クラス
+"""
+クラス
 
-#クラス:設計図(実体はない空)
-#メソッド:クラスの中にある関数 ※引数がない場合は()のみつける
-#引数:材料(材料がないと動かない関数、メソッド、クラスには()の中に引数を入れる)　
-#オブジェクト(インスタンス)→実体化したもの ※クラス名()でインスタンス化できる
-#インスタンス変数→オブジェクトの具体的な値や名前
+クラス:設計図(実体はない空)
+メソッド:クラスの中にある関数 ※引数がない場合は()のみつける
+引数:材料(材料がないと動かない関数、メソッド、クラスには()の中に引数を入れる)
+オブジェクト(インスタンス)→実体化したもの ※クラス名()でインスタンス化できる
+インスタンス変数→オブジェクトの具体的な値や名前
+クラス変数→クラスで共通した値
+
+クラスの定義
+
+class クラス名:
+    変数名 = 値 ⇦クラス変数
+    def __init__(self,引数,…):
+        self.変数名 = 引数 ⇦インスタンス変数
+    def メソッド名(self,引数,…):
+        #処理
+"""
 
 #ex.生徒のテストの点数を管理するプログラム
 
-#設計図(インスタンス変数の初期化)
 class Student:
     def __init__(self,name,math,japanese,english,science,society):
         self.name = name
@@ -266,8 +400,8 @@ class Student:
         self.science = science
         self.society = society
 
-#５教科の平均点を計算するメソッド(クラス中で使える関数)
     def average_score(self):
+        #５教科の平均点を計算するメソッド
         avg = (self.math + self.japanese + self.english 
                + self.science + self.society) /  5
         return avg
@@ -344,15 +478,28 @@ deck.shuffle() #山札の実物をシャッフル
 for card in deck.cards: #リストの状態から一枚ずつ取り出す ※cardsはリストだからアクセス
     print(f"{card.suit}{card.number}")
 
-#モジュール(import文)
+"""
+モジュール(クラスや関数が書かれたスクリプトファイル)
 
-#my_module(ファイル名)からStudent(クラス)を呼び出している
-from my_module import Student #〇〇.ファイル名で〇〇フォルダ内
+パッケージ:モジュールが存在するディレクトリ(pip install パッケージ名)
+ライブラリ:パッケージを1つにまとめたもの
 
-#別ファイルで設定したメソッドも使える
-stugent_1 = Student("斉藤そうま", 82, 74, 60, 92, 72)
+import モジュール名 #読み込み
+      または
+from モジュール名 import 関数名,クラス名
+
+モジュール名.クラス名 #呼び出し
+モジュール名.関数名
+モジュール名.変数名
+"""
+
+#予め用意したモジュール
+from my_module import Student #〇〇.ファイル名で〇〇フォルダから呼び出せる
+#my_module(ファイル名)からStudent(クラス)を呼び出し
+
+student_1 = Student("斉藤そうま", 82, 74, 60, 92, 72)
 s1_avg = student_1.average_score()
-print(s1_avg)
+print(f"s1の平均点は{s1_avg}点")
 
 #標準モジュール(元々搭載されている)
 from datetime import datetime #現在の日時
@@ -361,20 +508,23 @@ t = datetime.today()
 print(t)
 
 #外部ライブラリ(モジュールを複数まとめてパッケージ化したもの)
+"""
+ex.Matplotlib(グラフを書くことに特化)
+ex.Excelファイルを操作できるOpenpyxl
+ex.PDFファイルを操作できるpypdf 等 Pythonは外部ライブラリが豊富
 
-#Matplotlib(グラフを書くことに特化)
-#Excelファイルを操作できるOpenpyxl
-#PDFファイルを操作できるpypdf 等 Pythonは外部ライブラリが豊富
+パッケージ管理ツール pip (pipコマンドをターミナルに入力)
+PyPlに登録されている外部ライブラリをpip越しにインストールできる
+"""
 
-#パッケージ管理ツール pip (pipコマンドをターミナルに入力)
-#PyPlに登録されている外部ライブラリをpip越しにインストールできる
-
-#※Macの場合→homebrew経由のpythonだとpipコマンド等使えなかった
-#仮想環境(python)を作る手順
-#python3 -m venv venv(仮想環境フォルダ作る※ターミナル入力)
-#source venv/bin/activate(仮想環境に入る※ターミナル左側にvenv出たらok)
-#pip install 〇〇(ターミナル入力でインストール)
-
+#仮想環境の構築
+"""
+※Macの場合→homebrew経由のpythonだとpipコマンド等使えなかった
+仮想環境(python)を作る手順
+python3 -m venv venv(仮想環境フォルダ作る※ターミナル入力)
+source venv/bin/activate(仮想環境に入る※ターミナル左側にvenv出たらok)
+pip install 〇〇(ターミナル入力でインストール)
+"""
 #ex.Matplotlibの使用(グラフ特化)
 
 import matplotlib.pyplot as plt
@@ -384,10 +534,12 @@ num = [20, 17, 25, 9]
 plt.bar(label, num)
 plt.savefig("./bar.png")
 
-# pythonファイル→PDF出力する方法
-# py→html化→PDF保存
-# pygmentize -f html -O full -o ファイル名.html ファイル名.py(ターミナル入力)
-
+#PDF出力
+"""
+pythonファイル→PDF出力する方法
+py→html化→PDF保存(以下コマンド)
+pygmentize -f html -O full -o ファイル名.html ファイル名.py(ターミナル入力)
+"""
 
 
 
