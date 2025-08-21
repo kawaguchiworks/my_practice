@@ -166,6 +166,7 @@ print(f"{avg_score}点")#sum,len関数はdict_value型をそのまま入れる�
 
 """
 集合(インデックスを持たない,同じ値を持てない)
+set()で集合に型変換
 """
 
 x = {1, 2, 4} 
@@ -182,6 +183,7 @@ print(a, b, c)
 
 """
 タプル(インデックスを持つ、同じ値を持てる※値を変更できない)
+tuple()でタプルに型変換
 """
 
 x = (1, 1, 4, "A", "B", "C") #ex.緯度経度
@@ -268,7 +270,23 @@ age = 19
 result = not(age >= 20)
 print(result)
 
-
+"""
+while文(ある条件がTrueになっている間ある処理を繰り返す)
+while 条件:
+    繰り返したい処理
+"""
+x = 0
+while x <= 10: #xが10以下の間ずっと繰り返す
+    x += 1
+    print(f"1を加算した後のx:{x}")
+    
+#whileとファイル読み込み
+with open("text.txt") as f:
+    t = f.readline() #一行読み込む
+    while t != "": #空文字じゃなくなるまで
+        print(t)
+        t = f.readline()#次の行を読み込む(ないと無限ループ)
+    
 """
 繰り返し処理(for~in文)※コレクションから要素を取り出し繰り返す
 for 変数 in 繰り返しオブジェクト(リスト・辞書・range等):
@@ -331,6 +349,7 @@ for number in range(1,101):
         print("Fizz")
     else:
         print(number)
+        
 
 """
 関数(処理を一つにまとめて定義する)
