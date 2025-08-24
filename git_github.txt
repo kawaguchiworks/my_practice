@@ -1,0 +1,65 @@
+Git:
+ソースコードのバージョンを管理するツール
+履歴を残しておける
+
+リポジトリ:Git管理するファイルのまとまり
+コミット:データを記録すること(履歴残す)
+ブランチ:履歴を分岐させる(mainを触らずに作業を進める)
+マージ:別のブランチで変更した結果を取り込む(mainに別ブランチの機能を追加)
+※複数人で作業しマージすると変更同士がぶつかる(コンフリクトを解消する必要がある)
+
+1.Gitでユーザー情報登録(※初回のみ)
+git config --global user.name "GitHubのユーザー名"
+git config --global user.email "GitHubに登録したメールアドレス"
+
+2.管理したいフォルダを開き、Gitの管理対象に設定(※初回のみ)
+git init 
+(リポジトリ初期化→.gitフォルダができる)
+
+gitフォルダの削除（Gitの管理を完全にやめたい時）
+※過去のコミット履歴や設定全て消える為、注意
+rm -rf .git
+
+3.コミットの予約
+git add .　(全てのファイルを予約)
+git add ファイル名.py (特定のファイル名を予約)
+
+4.コミットの実行
+git commit -m "メッセージ文(ex最初のコミット)"
+
+5.ブランチの作成
+git check out ブランチ名(例:feature/user_login)
+
+※メインのブランチに切り替える時
+git check out main 
+
+6.マージ
+git merge ブランチ名()feature/user_login
+※メインブランチで開いている時、mainにfeature/user_loginを取り込むという意味になる
+
+(データを戻したい時)
+git reset --hard コミットID #そのコミットをした時の状態に戻す(戻した履歴は残らない)
+git revert コミットID #そのコミットを打ち消す
+
+(コミットID知りたい時)
+git log (commit:コミットIDと表示される)
+
+(現在の情報を確認したい時)
+git status
+
+GitHub:
+Gitで管理されたファイルをインターネット上にアップロードできるプラットフォーム
+複数人、チームで管理できる
+
+GitとGitHubとの連携
+
+1.GitHubでリポジトリの作成
+※作成したリポジトリのページのURLをコピーしておく
+
+2.Gitリポジトリとフォルダの接続
+git remote add origin リポジトリURL名.git
+
+3.ファイルをGitHubにアップロード(push)
+git push -u origin main
+
+
